@@ -103,5 +103,18 @@ public class BookDAO {
         String sql = "delete from carte where isbn ='" + isbn + "' ";
         stmt.executeUpdate(sql);
     }
+
+    public void addBook(double id, String title, String author, String genre, int pageNr, String isbn, double rating, String resume) throws SQLException {
+        try {
+            String query = " insert into carte (id, titlu, autor, gen, nr_pag, isbn, rating, rezumat)"
+                    + " values (" + id + ", " + title + "," + author + ", " + genre + "," + pageNr + ", " + isbn + "," + rating + ", " + resume + ")";
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (Exception e)
+        {
+            System.err.println("Exceptie aruncata in BookDAO addBook! ");
+            System.err.println(e.getMessage());
+        }
+    }
 }
 

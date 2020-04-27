@@ -49,4 +49,31 @@ public class HistoryDAO {
         Statement stmt = connection.createStatement();
         stmt.execute(query);
     }
+
+
+    public void addHistory(History history) throws SQLException {
+        try {
+            String query = " insert into istoric (id_utilizator, id_carte, data_vizitare)"
+                    + " values (" + history.getId() + ", " + history.getVisitedBook().getId() + "," + history.getVisitationDate() + ")";
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (Exception e)
+        {
+            System.err.println("Exceptie aruncata in HistoryDAO addHistory! ");
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void addHistory(double id, double visitedBookId, String visitationDate) throws SQLException {
+        try {
+            String query = " insert into istoric (id_utilizator, id_carte, data_vizitare)"
+                    + " values (" + id + ", " + visitedBookId + "," + visitationDate + ")";
+            Statement stmt = connection.createStatement();
+            stmt.execute(query);
+        } catch (Exception e)
+        {
+            System.err.println("Exceptie aruncata in HistoryDAO addHistory! ");
+            System.err.println(e.getMessage());
+        }
+    }
 }
